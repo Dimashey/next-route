@@ -15,13 +15,7 @@ export default function Movie ({ movie }) {
 
 export async function getStaticPaths() {
     const movies = JSON.parse(fs.readFileSync(`${process.cwd()}/static/movies.json`, 'utf-8'));
-    const movie = movies.map(m => {
-        return {
-            params: {
-                movie: m.rout
-            }
-        }
-    });
+    const movie = movies.map(m => ({params: {movie: m.rout}}));
     return {
         paths: movie,
         fallback: false
